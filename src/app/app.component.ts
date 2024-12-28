@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { IonButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-root',
+  imports: [IonButton],
   template: `
-    {{ title }}
+   <ion-button color="primary">Click Me</ion-button>
   `,
   styles: ``
 })
