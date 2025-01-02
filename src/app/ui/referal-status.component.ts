@@ -18,18 +18,18 @@ export interface ReferalStatus {
       <div class="circle circle-first">
         @let status = referalStatus()!; 
 
-        <ion-icon size="small" [ngClass]="status.firstCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-        <ion-icon size="small" [ngClass]="status.firstCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-        <ion-icon size="small" [ngClass]="status.firstCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+        <ion-icon [ngClass]="status.firstCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+        <ion-icon [ngClass]="status.firstCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+        <ion-icon [ngClass]="status.firstCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
         <div class="circle circle-second">
-          <ion-icon size="small" [ngClass]="status.secondCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon size="small" [ngClass]="status.secondCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon size="small" [ngClass]="status.secondCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon size="small" [ngClass]="status.secondCircle === 4 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="status.secondCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="status.secondCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="status.secondCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="status.secondCircle === 4 ? 'green' : 'gray'" name="person-circle"></ion-icon>
           <div class="circle circle-third">
-            <ion-icon size="small" [ngClass]="status.thirdCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-            <ion-icon size="small" [ngClass]="status.thirdCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-            <ion-icon size="small" [ngClass]="status.thirdCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+            <ion-icon [ngClass]="status.thirdCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+            <ion-icon [ngClass]="status.thirdCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+            <ion-icon [ngClass]="status.thirdCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
           </div>
         </div>
       </div>

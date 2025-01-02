@@ -20,7 +20,10 @@ import {
   IonAvatar,
   IonCheckbox,
 } from '@ionic/angular/standalone';
-import { ReferalStatus, ReferalStatusComponent } from "../ui/referal-status.component";
+import {
+  ReferalStatus,
+  ReferalStatusComponent,
+} from '../ui/referal-status.component';
 
 @Component({
   selector: 'app-contacts',
@@ -42,8 +45,8 @@ import { ReferalStatus, ReferalStatusComponent } from "../ui/referal-status.comp
     NgFor,
     IonCheckbox,
     FormsModule,
-    ReferalStatusComponent
-],
+    ReferalStatusComponent,
+  ],
   template: `
     <ion-header>
       <ion-toolbar color="primary">
@@ -79,10 +82,11 @@ import { ReferalStatus, ReferalStatusComponent } from "../ui/referal-status.comp
         </ion-segment>
       </ion-toolbar>
       <ion-toolbar>
-        <ion-searchbar 
+        <ion-searchbar
           [(ngModel)]="searchQuery"
           (ionInput)="filterUsers()"
-          placeholder="Search Users"></ion-searchbar>
+          placeholder="Search Users"
+        ></ion-searchbar>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -100,12 +104,14 @@ import { ReferalStatus, ReferalStatusComponent } from "../ui/referal-status.comp
           <ion-avatar slot="start">
             <img [src]="user.avatar" alt="User Avatar" />
           </ion-avatar>
-          <ion-label>
-            <h2>{{ user.name }}</h2>
+          <ion-label class="username-container">
+            <h3>{{ user.name }}</h3>
             <p>{{ user.username }}</p>
           </ion-label>
           <ion-label>
-            <app-referal-status [referalStatus]="user.referalStatus"></app-referal-status>
+            <app-referal-status
+              [referalStatus]="user.referalStatus"
+            ></app-referal-status>
           </ion-label>
           <ion-checkbox slot="end" [(ngModel)]="user.selected"></ion-checkbox>
         </ion-item>
@@ -118,14 +124,20 @@ import { ReferalStatus, ReferalStatusComponent } from "../ui/referal-status.comp
       flex-direction: column;
       height: 100%;
     }
+
+    .username-container {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   `,
 })
 export class ContactsComponent {
   referalStatus: ReferalStatus = {
     firstCircle: 1,
     secondCircle: 1,
-    thirdCircle: 1
-  }
+    thirdCircle: 1,
+  };
 
   users = [
     {
@@ -224,7 +236,7 @@ export class ContactsComponent {
       (user) =>
         user.name.toLowerCase().includes(query) ||
         user.username.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query)
+        user.email.toLowerCase().includes(query),
     );
   }
 }
