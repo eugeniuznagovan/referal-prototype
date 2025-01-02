@@ -11,7 +11,7 @@ import {
   imports: [IonTabBar, IonTabs, IonIcon, IonTabButton],
   template: `
     <ion-tabs>
-      <ion-tab-bar slot="bottom">
+      <ion-tab-bar slot="bottom" color="primary">
         <ion-tab-button tab="home">
           <ion-icon name="home-outline"></ion-icon>
           Home

@@ -5,8 +5,8 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   selector: 'app-wish',
  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
   template: `
-    <ion-header color="primary">
-      <ion-toolbar>
+    <ion-header>
+      <ion-toolbar color="primary">
         <ion-title>Wish</ion-title>
       </ion-toolbar>
     </ion-header>

@@ -17,10 +17,10 @@ import { ContactsComponent } from './contacts.component';
 
 @Component({
   selector: 'app-home',
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonCardSubtitle, IonButton, RouterLink, IonNavLink],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardTitle, IonCardHeader, IonCardContent, IonCardSubtitle, IonButton, RouterLink],
   template: `
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-title>Home</ion-title>
       </ion-toolbar>
     </ion-header>

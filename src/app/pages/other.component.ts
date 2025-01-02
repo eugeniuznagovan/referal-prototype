@@ -11,7 +11,7 @@ import {
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
   template: `
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-title>Other</ion-title>
       </ion-toolbar>
     </ion-header>

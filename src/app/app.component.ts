@@ -7,6 +7,7 @@ import {
   heartOutline,
   createOutline,
   cashOutline,
+  personCircle
 } from 'ionicons/icons';
 
 @Component({
@@ -27,6 +28,7 @@ export class AppComponent {
       heartOutline,
       createOutline,
       cashOutline,
+      personCircle
     });
   }
 }

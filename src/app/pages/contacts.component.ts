@@ -17,11 +17,10 @@ import {
   IonList,
   IonListHeader,
   IonItem,
-  IonRadioGroup,
   IonAvatar,
-  IonRadio,
   IonCheckbox,
 } from '@ionic/angular/standalone';
+import { ReferalStatus, ReferalStatusComponent } from "../ui/referal-status.component";
 
 @Component({
   selector: 'app-contacts',
@@ -35,22 +34,19 @@ import {
     IonSegment,
     IonSegmentButton,
     IonLabel,
-    IonButton,
-    IonInput,
     IonSearchbar,
     IonList,
     IonListHeader,
     IonItem,
-    IonRadioGroup,
     IonAvatar,
-    IonRadio,
     NgFor,
     IonCheckbox,
     FormsModule,
-  ],
+    ReferalStatusComponent
+],
   template: `
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-buttons slot="start">
           <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
@@ -89,13 +85,14 @@ import {
           placeholder="Search Users"></ion-searchbar>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
+    <ion-content>
       <!-- Scrollable List -->
       <ion-list>
         <ion-list-header>
           <ion-label>Friends list</ion-label>
         </ion-list-header>
         <ion-item
+          detail="false"
           *ngFor="let user of filteredUsers"
           button
           (click)="user.selected = !user.selected"
@@ -106,6 +103,9 @@ import {
           <ion-label>
             <h2>{{ user.name }}</h2>
             <p>{{ user.username }}</p>
+          </ion-label>
+          <ion-label>
+            <app-referal-status [referalStatus]="user.referalStatus"></app-referal-status>
           </ion-label>
           <ion-checkbox slot="end" [(ngModel)]="user.selected"></ion-checkbox>
         </ion-item>
@@ -121,6 +121,12 @@ import {
   `,
 })
 export class ContactsComponent {
+  referalStatus: ReferalStatus = {
+    firstCircle: 1,
+    secondCircle: 1,
+    thirdCircle: 1
+  }
+
   users = [
     {
       name: 'Kenneth Black',
@@ -128,6 +134,7 @@ export class ContactsComponent {
       email: 'kmacdonald@hotmail.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Valerie Davis',
@@ -135,6 +142,7 @@ export class ContactsComponent {
       email: 'vbrown@yahoo.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Justin Ballard',
@@ -142,6 +150,7 @@ export class ContactsComponent {
       email: 'jamesmunoz@gmail.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Bernard Foster',
@@ -149,6 +158,7 @@ export class ContactsComponent {
       email: 'vlittle@graham.biz',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Charles Johnson',
@@ -156,6 +166,7 @@ export class ContactsComponent {
       email: 'leslie57@gmail.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Maria Jones',
@@ -163,6 +174,7 @@ export class ContactsComponent {
       email: 'josehaley@smith-conway.info',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Dustin Burns',
@@ -170,6 +182,7 @@ export class ContactsComponent {
       email: 'jeffreyruiz@hotmail.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Joshua Robinson',
@@ -177,6 +190,7 @@ export class ContactsComponent {
       email: 'annfrench@yahoo.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'David Simpson',
@@ -184,6 +198,7 @@ export class ContactsComponent {
       email: 'nicolemitchell@hotmail.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
     {
       name: 'Emily Leonard',
@@ -191,6 +206,7 @@ export class ContactsComponent {
       email: 'tylercampbell@hotmail.com',
       avatar: 'https://via.placeholder.com/50',
       selected: false,
+      referalStatus: this.referalStatus,
     },
   ];
 

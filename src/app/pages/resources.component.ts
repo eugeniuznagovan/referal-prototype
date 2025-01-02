@@ -6,7 +6,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
   template: `
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-title>Resources</ion-title>
       </ion-toolbar>
     </ion-header>
