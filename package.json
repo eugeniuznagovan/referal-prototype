@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href https://eugeniuznagovan.github.io/referal-prototype/",
+    "deploy": "ngh --dir=dist/referal/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
