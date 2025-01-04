@@ -58,7 +58,7 @@ export interface ReferalStatus {
     }
 
     .circle-third {
-      background: var(--ion-color-strong-blue);
+      background: var(--ion-color-light-blue);
     }
 
     .circle-second {
@@ -66,7 +66,7 @@ export interface ReferalStatus {
     }
 
     .circle-first {
-      background: var(--ion-color-light-blue);
+      background: var(--ion-color-strong-blue);
     }
   `,
 })

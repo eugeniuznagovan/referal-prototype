@@ -101,19 +101,15 @@ import {
           button
           (click)="user.selected = !user.selected"
         >
-          <ion-avatar slot="start">
+          <ion-avatar>
             <img [src]="user.avatar" alt="User Avatar" />
           </ion-avatar>
-          <ion-label class="username-container">
+          <ion-label style="margin-left: 1rem; text-overflow: elipsis; overflow: hidden; white-space: nowrap;">
             <h3>{{ user.name }}</h3>
             <p>{{ user.username }}</p>
           </ion-label>
-          <ion-label>
-            <app-referal-status
-              [referalStatus]="user.referalStatus"
-            ></app-referal-status>
-          </ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="user.selected"></ion-checkbox>
+          <app-referal-status [referalStatus]="user.referalStatus" style="margin-right: 1rem" />
+          <ion-checkbox slot="end" [(ngModel)]="user.selected" />
         </ion-item>
       </ion-list>
     </ion-content>
