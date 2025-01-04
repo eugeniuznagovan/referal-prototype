@@ -55,6 +55,7 @@ export interface ReferalStatus {
       padding: 3px;
       border-radius: 10px;
       align-items: center;
+      margin-right: 2px;
     }
 
     .circle-third {
