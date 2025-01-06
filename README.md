@@ -64,7 +64,7 @@ For more information on using the Angular CLI, including detailed command refere
 ### Features
 - [] search no result
 - [] empty content for the rest of the pages
-- [] enable full screen
+- [] enable full screen - https://docs.telegram-mini-apps.com/platform/viewport
 
 ### Bugs
 - [] 

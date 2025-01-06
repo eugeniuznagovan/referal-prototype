@@ -22,17 +22,14 @@ export interface ReferalStatus {
           <div class="circle circle-first">
             <ion-icon [ngClass]="status.firstCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
             <ion-icon [ngClass]="status.firstCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-            <ion-icon [ngClass]="status.firstCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
           </div>
           <ion-icon [ngClass]="status.secondCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
           <ion-icon [ngClass]="status.secondCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
           <ion-icon [ngClass]="status.secondCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon [ngClass]="status.secondCircle === 4 ? 'green' : 'gray'" name="person-circle"></ion-icon>
         </div>
         <div style="display: flex; align-items: center; padding-right: 3px;">
           <ion-icon [ngClass]="status.thirdCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
           <ion-icon [ngClass]="status.thirdCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon [ngClass]="status.thirdCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
         </div>
       </div>
     }
