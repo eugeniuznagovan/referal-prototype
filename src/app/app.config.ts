@@ -11,7 +11,7 @@ import { routes } from './app.routes';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { WebApp} from '@twa-dev/types';
 
-export const TELEGRAM_WEB_APP = new InjectionToken<WebApp>('WindowToken', {
+export const TWA_TOKEN = new InjectionToken<WebApp>('WindowToken', {
   providedIn: 'root',
   //@ts-ignore TODO: Remove ts-ignore
   factory: () => window.Telegram.WebApp,
