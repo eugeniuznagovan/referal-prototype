@@ -11,7 +11,6 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonNavLink,
 } from '@ionic/angular/standalone';
 import { ContactsComponent } from './contacts.component';
 
@@ -50,7 +49,7 @@ import { ContactsComponent } from './contacts.component';
         </ion-card-header>
 
         <ion-card-content>
-          <ion-button routerLink="contacts">Navigate</ion-button>
+          <ion-button routerLink="contacts">Open</ion-button>
         </ion-card-content>
       </ion-card>
     </ion-content>
