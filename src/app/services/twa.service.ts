@@ -9,9 +9,8 @@ export class TwaService {
   twa = inject(TWA_TOKEN);
   
   constructor() {
-    this.twa.ready();
-
     if(!isDevMode()) {
+      this.twa.ready();
       this.twa.requestFullscreen(); 
     }
   }

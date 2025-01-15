@@ -1,32 +1,30 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { Component, computed, inject, model } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
+  IonAvatar,
+  IonBackButton,
   IonButtons,
+  IonCheckbox,
   IonContent,
   IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonBackButton,
-  IonSegment,
-  IonSegmentButton,
+  IonItem,
   IonLabel,
-  IonButton,
-  IonInput,
-  IonSearchbar,
   IonList,
   IonListHeader,
-  IonItem,
-  IonAvatar,
-  IonCheckbox,
+  IonSearchbar,
+  IonSegment,
+  IonSegmentButton,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
-import {
-  ReferalStatus,
-  ReferalStatusComponent,
-} from '../ui/referal-status.component';
+import { ReferalStatusComponent, } from '../ui/referal-status.component';
+import { ContactsStore } from '../store/contacts.store';
 
 @Component({
   selector: 'app-contacts',
+  providers: [
+    ContactsStore
+  ],
   imports: [
     IonHeader,
     IonToolbar,
@@ -42,10 +40,10 @@ import {
     IonListHeader,
     IonItem,
     IonAvatar,
-    NgFor,
     IonCheckbox,
     FormsModule,
     ReferalStatusComponent,
+
   ],
   template: `
     <ion-header>
@@ -84,33 +82,38 @@ import {
       <ion-toolbar>
         <ion-searchbar
           [(ngModel)]="searchQuery"
-          (ionInput)="filterUsers()"
           placeholder="Search Users"
         ></ion-searchbar>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <!-- Scrollable List -->
       <ion-list>
         <ion-list-header>
           <ion-label>Friends list</ion-label>
         </ion-list-header>
-        <ion-item
-          detail="false"
-          *ngFor="let user of filteredUsers"
-          button
-          (click)="user.selected = !user.selected"
-        >
-          <ion-avatar>
-            <img [src]="user.avatar" alt="User Avatar" />
-          </ion-avatar>
-          <ion-label style="margin-left: 1rem; text-overflow: elipsis; overflow: hidden; white-space: nowrap;">
-            <h3>{{ user.name }}</h3>
-            <p>{{ user.username }}</p>
-          </ion-label>
-          <app-referal-status [referalStatus]="user.referalStatus" style="margin-right: 1rem" />
-          <ion-checkbox slot="end" [(ngModel)]="user.selected" />
-        </ion-item>
+
+        @for (contact of filteredContacts(); track contact.username) {
+          <ion-item
+            #item
+            detail="false"
+            button
+            (click)="checkbox.checked = !checkbox.checked"
+          >
+            <ion-avatar>
+              <img [src]="contact.avatar" alt="User Avatar"/>
+            </ion-avatar>
+            <ion-label style="margin-left: 1rem; text-overflow: elipsis; overflow: hidden; white-space: nowrap;">
+              <h3>{{ contact.name }}</h3>
+              <p>{{ contact.username }}</p>
+            </ion-label>
+            <app-referal-status [referalStatus]="contact.inviteStatus" style="margin-right: 1rem"/>
+            <ion-checkbox #checkbox slot="end"/>
+          </ion-item>
+        } @empty {
+          <ion-item>
+            <ion-label>No results found.</ion-label>
+          </ion-item>
+        }
       </ion-list>
     </ion-content>
   `,
@@ -120,119 +123,20 @@ import {
       flex-direction: column;
       height: 100%;
     }
-
-    .username-container {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
   `,
 })
 export class ContactsComponent {
-  referalStatus: ReferalStatus = {
-    firstCircle: 1,
-    secondCircle: 1,
-    thirdCircle: 1,
-  };
+  readonly store = inject(ContactsStore);
 
-  users = [
-    {
-      name: 'Kenneth Black',
-      username: 'paula85',
-      email: 'kmacdonald@hotmail.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Valerie Davis',
-      username: 'william04',
-      email: 'vbrown@yahoo.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/2.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Justin Ballard',
-      username: 'denise65',
-      email: 'jamesmunoz@gmail.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/3.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Bernard Foster',
-      username: 'hudsonmaria',
-      email: 'vlittle@graham.biz',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/4.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Charles Johnson',
-      username: 'drakemark',
-      email: 'leslie57@gmail.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/5.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Maria Jones',
-      username: 'lindarodriguez',
-      email: 'josehaley@smith-conway.info',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/6.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Dustin Burns',
-      username: 'jacobjones',
-      email: 'jeffreyruiz@hotmail.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/7.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Joshua Robinson',
-      username: 'fieldsrebecca',
-      email: 'annfrench@yahoo.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/8.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'David Simpson',
-      username: 'danielduffy',
-      email: 'nicolemitchell@hotmail.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/9.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-    {
-      name: 'Emily Leonard',
-      username: 'nevans',
-      email: 'tylercampbell@hotmail.com',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/10.jpg',
-      selected: false,
-      referalStatus: this.referalStatus,
-    },
-  ];
+  searchQuery = model('');
 
-  filteredUsers = [...this.users]; // Filtered users for display
-  searchQuery: string = ''; // Holds the current search query
-  selectedUser: any = null; // Holds the selected user
+  filteredContacts = computed(() => {
+    const query = this.searchQuery().toLowerCase();
 
-  onUserSelect(event: any): void {
-    event.detail.selected = event.detail.selected;
-  }
-
-  filterUsers(): void {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredUsers = this.users.filter(
-      (user) =>
-        user.name.toLowerCase().includes(query) ||
-        user.username.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query),
-    );
-  }
+    return this.store.contacts().filter(contact => {
+      return contact.name.toLowerCase().includes(query) ||
+        contact.username.toLowerCase().includes(query) ||
+        contact.email.toLowerCase().includes(query)
+    });
+  })
 }

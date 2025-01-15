@@ -1,12 +1,8 @@
 import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { IonIcon } from '@ionic/angular/standalone';
+import { InviteStatus } from '../store/contacts.store';
 
-export interface ReferalStatus {
-  firstCircle: number;
-  secondCircle: number;
-  thirdCircle: number;
-}
 
 @Component({
   selector: 'app-referal-status',
@@ -16,7 +12,7 @@ export interface ReferalStatus {
       <p>Loading...</p>
     } @else {
       <div class="circle circle-third">
-        @let status = referalStatus()!; 
+        @let status = referalStatus()!;
 
         <div class="circle circle-second">
           <div class="circle circle-first">
@@ -72,5 +68,5 @@ export interface ReferalStatus {
   `,
 })
 export class ReferalStatusComponent {
-  referalStatus = input<ReferalStatus | undefined>(undefined);
+  referalStatus = input<InviteStatus | undefined>(undefined);
 }
