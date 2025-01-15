@@ -1,17 +1,13 @@
-import { Component } from '@angular/core';
-import {
-  IonIcon,
-  IonTabBar,
-  IonTabs,
-  IonTabButton,
-} from '@ionic/angular/standalone';
+import { Component, inject } from '@angular/core';
+import { IonIcon, IonTabBar, IonTabButton, IonTabs, } from '@ionic/angular/standalone';
+import { AppStore } from './store/app.store';
 
 @Component({
   selector: 'app-shell',
   imports: [IonTabBar, IonTabs, IonIcon, IonTabButton],
   template: `
       <ion-tabs>
-        <ion-tab-bar slot="bottom" color="primary">
+        <ion-tab-bar slot="bottom" [color]="appStore.isLightTheme() ? 'primary' : ''">
           <ion-tab-button tab="home">
             <ion-icon name="home-outline"></ion-icon>
             Home
@@ -37,4 +33,6 @@ import {
   `,
   styles: ``,
 })
-export class ShellComponent {}
+export class ShellComponent {
+  appStore = inject(AppStore);
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   IonButton,
@@ -12,7 +12,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { ContactsComponent } from './contacts.component';
+import { AppStore } from '../store/app.store';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,7 @@ import { ContactsComponent } from './contacts.component';
   ],
   template: `
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar [color]="appStore.isLightTheme() ? 'primary' : ''">
         <ion-title>Home</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -57,5 +57,5 @@ import { ContactsComponent } from './contacts.component';
   styles: ``,
 })
 export class HomeComponent {
-  component = ContactsComponent;
+  appStore = inject(AppStore);
 }

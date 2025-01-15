@@ -33,15 +33,22 @@
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+ @import "@ionic/angular/css/palettes/dark.class.css";
 /* @import "@ionic/angular/css/palettes/dark.system.css"; */
+
+.ion-palette-dark.ios,
+.ion-palette-dark.md {
+  --ion-item-background: #red;
+  --ion-header-background: #1c1c1d;
+  --ion-toolbar-background: #1c1c1d;
+}
 
 /* Custom  */
 :root {
     --ion-color-strong-blue: #2b61d5;
     --ion-color-normal-blue: #8ab3ea;
     --ion-color-light-blue: #c0daf6;
-    
+
     --ion-color-normal-green: #60ad5a;
     --ion-color-strong-green: #60ad5a;
     --ion-color-light-green: #7fbb90;

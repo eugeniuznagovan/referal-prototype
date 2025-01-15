@@ -1,19 +1,12 @@
-import { Component, inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import {
-  homeOutline,
-  documentsOutline,
-  heartOutline,
-  createOutline,
-  cashOutline,
-  personCircle,
-} from 'ionicons/icons';
-import { TwaService } from './services/twa.service';
-import { DOCUMENT } from '@angular/common';
+import { cashOutline, createOutline, documentsOutline, heartOutline, homeOutline, personCircle, } from 'ionicons/icons';
+import { AppStore } from './store/app.store';
 
 @Component({
   selector: 'app-root',
+  providers: [AppStore],
   imports: [IonRouterOutlet, IonApp],
   template: `
     <ion-app>
@@ -23,9 +16,7 @@ import { DOCUMENT } from '@angular/common';
   styles: ``,
 })
 export class AppComponent {
-  twaService = inject(TwaService);
-  renderer = inject(Renderer2);
-  document = inject(DOCUMENT);
+  readonly appStore = inject(AppStore);
 
   constructor() {
     addIcons({

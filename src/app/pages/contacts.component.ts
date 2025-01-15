@@ -19,6 +19,7 @@ import {
 } from '@ionic/angular/standalone';
 import { InviteStatusComponent, } from '../ui/invite-status.component';
 import { ContactsStore } from '../store/contacts.store';
+import { AppStore } from '../store/app.store';
 
 @Component({
   selector: 'app-contacts',
@@ -47,7 +48,7 @@ import { ContactsStore } from '../store/contacts.store';
   ],
   template: `
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar [color]="appStore.isLightTheme() ? 'primary' : ''">
         <ion-buttons slot="start">
           <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
@@ -127,6 +128,7 @@ import { ContactsStore } from '../store/contacts.store';
 })
 export class ContactsComponent {
   readonly store = inject(ContactsStore);
+  readonly appStore = inject(AppStore);
 
   searchQuery = model('');
 

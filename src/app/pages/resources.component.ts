@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { AppStore } from '../store/app.store';
 
 @Component({
   selector: 'app-resources',
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle],
   template: `
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar [color]="appStore.isLightTheme() ? 'primary' : ''">
         <ion-title>Resources</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -28,5 +29,5 @@ import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonH
   styles: ``
 })
 export class ResourcesComponent {
-
+  readonly appStore = inject(AppStore);
 }
