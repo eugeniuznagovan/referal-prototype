@@ -38,12 +38,6 @@
 
 /* Custom  */
 :root {
-    /* TWA safe areas */
-    --safe-area-inset-top: 20px;
-    --safe-area-inset-right: 20px;
-    --safe-area-inset-bottom: 20px;
-    --safe-area-inset-left: 20px;
-
     --ion-color-strong-blue: #2b61d5;
     --ion-color-normal-blue: #8ab3ea;
     --ion-color-light-blue: #c0daf6;
@@ -53,11 +47,9 @@
     --ion-color-light-green: #7fbb90;
 
     --ion-color-normal-gray: #6a7088;
-}
 
-.ion-page {
-    left: var(--safe-area-inset-left);
-    right: var(--safe-area-inset-right);
-    bottom: var(--safe-area-inset-bottom);
-    top: var(--safe-area-inset-top);   
+    --ion-safe-area-top: calc(var(--tg-safe-area-inset-top) + 40px);
+    --ion-safe-area-bottom: var(--tg-safe-area-inset-bottom);
+    --ion-safe-area-left: var(--tg-safe-area-inset-left);
+    --ion-safe-area-right: var(--tg-safe-area-inset-right);
 }

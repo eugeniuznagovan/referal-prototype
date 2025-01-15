@@ -22,7 +22,7 @@ import { DOCUMENT } from '@angular/common';
   `,
   styles: ``,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   twaService = inject(TwaService);
   renderer = inject(Renderer2);
   document = inject(DOCUMENT);
@@ -36,15 +36,5 @@ export class AppComponent implements OnInit {
       cashOutline,
       personCircle,
     });
-  }
-
-  ngOnInit(): void {
-    const inset = this.twaService.getSafeAreaInset();
-    this.document.documentElement.style.setProperty('--safe-area-inset-left', inset.left.toString());
-    this.document.documentElement.style.setProperty('--safe-area-inset-right', inset.right.toString());
-    this.document.documentElement.style.setProperty('--safe-area-inset-top', inset.top.toString());
-    this.document.documentElement.style.setProperty('--safe-area-inset-bottom', inset.bottom.toString());
-
-    this.twaService.requestFullScreen();
   }
 }

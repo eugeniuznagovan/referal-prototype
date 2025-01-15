@@ -1,5 +1,4 @@
-import { inject, Injectable } from '@angular/core';
-import WebApp from '@twa-dev/sdk';
+import { inject, Injectable, isDevMode } from '@angular/core';
 import { TWA_TOKEN } from '../app.config';
 import { SafeAreaInset } from '@twa-dev/types';
 
@@ -10,7 +9,11 @@ export class TwaService {
   twa = inject(TWA_TOKEN);
   
   constructor() {
-    this.twa.ready();    
+    this.twa.ready();
+
+    if(!isDevMode()) {
+      this.twa.requestFullscreen(); 
+    }
   }
 
   getSafeAreaInset(): Readonly<SafeAreaInset> {
