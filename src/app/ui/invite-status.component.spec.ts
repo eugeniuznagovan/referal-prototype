@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReferalStatusComponent } from './referal-status.component';
+import { InviteStatusComponent } from './invite-status.component';
 
 describe('ReferalStatusComponent', () => {
-  let component: ReferalStatusComponent;
-  let fixture: ComponentFixture<ReferalStatusComponent>;
+  let component: InviteStatusComponent;
+  let fixture: ComponentFixture<InviteStatusComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReferalStatusComponent]
+      imports: [InviteStatusComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ReferalStatusComponent);
+    fixture = TestBed.createComponent(InviteStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

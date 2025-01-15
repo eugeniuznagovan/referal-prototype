@@ -17,7 +17,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import { ReferalStatusComponent, } from '../ui/referal-status.component';
+import { InviteStatusComponent, } from '../ui/invite-status.component';
 import { ContactsStore } from '../store/contacts.store';
 
 @Component({
@@ -42,7 +42,7 @@ import { ContactsStore } from '../store/contacts.store';
     IonAvatar,
     IonCheckbox,
     FormsModule,
-    ReferalStatusComponent,
+    InviteStatusComponent,
 
   ],
   template: `
@@ -106,7 +106,7 @@ import { ContactsStore } from '../store/contacts.store';
               <h3>{{ contact.name }}</h3>
               <p>{{ contact.username }}</p>
             </ion-label>
-            <app-referal-status [referalStatus]="contact.inviteStatus" style="margin-right: 1rem"/>
+            <app-invite-status [inviteStatus]="contact.inviteStatus" style="margin-right: 1rem"/>
             <ion-checkbox #checkbox slot="end"/>
           </ion-item>
         } @empty {

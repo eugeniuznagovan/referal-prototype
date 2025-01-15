@@ -5,14 +5,14 @@ import { InviteStatus } from '../store/contacts.store';
 
 
 @Component({
-  selector: 'app-referal-status',
+  selector: 'app-invite-status',
   imports: [IonIcon, NgClass],
   template: `
-    @if (!referalStatus()) {
+    @if (!inviteStatus()) {
       <p>Loading...</p>
     } @else {
       <div class="circle circle-third">
-        @let status = referalStatus()!;
+        @let status = inviteStatus()!;
 
         <div class="circle circle-second">
           <div class="circle circle-first">
@@ -67,6 +67,6 @@ import { InviteStatus } from '../store/contacts.store';
     }
   `,
 })
-export class ReferalStatusComponent {
-  referalStatus = input<InviteStatus | undefined>(undefined);
+export class InviteStatusComponent {
+  inviteStatus = input<InviteStatus | undefined>(undefined);
 }
