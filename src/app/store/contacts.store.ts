@@ -1,33 +1,17 @@
 import { signalStore, withState } from '@ngrx/signals';
 
-export interface InviteStatus {
-  firstCircle: number;
-  secondCircle: number;
-  thirdCircle: number;
-}
-
 export interface Contact {
   name: string;
   username: string;
   email: string;
   avatar: string;
   selected: boolean;
-  inviteStatus: InviteStatus;
+  referralCount: number;
 }
 
 export interface ContactState {
   contacts: Contact[];
   loading: boolean;
-}
-
-const getRandomInviteStatus = () => {
-  const getRandomNumber = () => Math.floor(Math.random() * 3) + 1;
-
-  return {
-    firstCircle: getRandomNumber(),
-    secondCircle: getRandomNumber(),
-    thirdCircle: getRandomNumber(),
-  }
 }
 
 const initialState: ContactState = {
@@ -39,7 +23,7 @@ const initialState: ContactState = {
       email: 'kmacdonald@hotmail.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 1,
     },
     {
       name: 'Valerie Davis',
@@ -47,7 +31,7 @@ const initialState: ContactState = {
       email: 'vbrown@yahoo.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/2.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 2,
     },
     {
       name: 'Justin Ballard',
@@ -55,7 +39,7 @@ const initialState: ContactState = {
       email: 'jamesmunoz@gmail.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/3.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 3,
     },
     {
       name: 'Bernard Foster',
@@ -63,7 +47,7 @@ const initialState: ContactState = {
       email: 'vlittle@graham.biz',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/4.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 4,
     },
     {
       name: 'Charles Johnson',
@@ -71,7 +55,7 @@ const initialState: ContactState = {
       email: 'leslie57@gmail.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/5.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 5,
     },
     {
       name: 'Maria Jones',
@@ -79,7 +63,7 @@ const initialState: ContactState = {
       email: 'josehaley@smith-conway.info',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/6.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 6,
     },
     {
       name: 'Dustin Burns',
@@ -87,7 +71,7 @@ const initialState: ContactState = {
       email: 'jeffreyruiz@hotmail.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/7.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 7,
     },
     {
       name: 'Joshua Robinson',
@@ -95,7 +79,7 @@ const initialState: ContactState = {
       email: 'annfrench@yahoo.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/8.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 6,
     },
     {
       name: 'David Simpson',
@@ -103,7 +87,7 @@ const initialState: ContactState = {
       email: 'nicolemitchell@hotmail.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/9.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 5,
     },
     {
       name: 'Emily Leonard',
@@ -111,7 +95,7 @@ const initialState: ContactState = {
       email: 'tylercampbell@hotmail.com',
       avatar: 'https://randomuser.me/api/portraits/thumb/men/10.jpg',
       selected: false,
-      inviteStatus: getRandomInviteStatus(),
+      referralCount: 4,
     },
   ]
 };

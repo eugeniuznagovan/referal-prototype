@@ -1,31 +1,30 @@
 import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { IonIcon } from '@ionic/angular/standalone';
-import { InviteStatus } from '../store/contacts.store';
 
 
 @Component({
   selector: 'app-invite-status',
   imports: [IonIcon, NgClass],
   template: `
-    @if (!inviteStatus()) {
+    @if (!referralCount()) {
       <p>Loading...</p>
     } @else {
       <div class="circle circle-third">
-        @let status = inviteStatus()!;
+        @let count = referralCount()!;
 
         <div class="circle circle-second">
           <div class="circle circle-first">
-            <ion-icon [ngClass]="status.firstCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-            <ion-icon [ngClass]="status.firstCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+            <ion-icon [ngClass]="count >= 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+            <ion-icon [ngClass]="count >= 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
           </div>
-          <ion-icon [ngClass]="status.secondCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon [ngClass]="status.secondCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon [ngClass]="status.secondCircle === 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="count >= 3 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="count >= 4 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="count >= 5 ? 'green' : 'gray'" name="person-circle"></ion-icon>
         </div>
         <div style="display: flex; align-items: center; padding-right: 3px;">
-          <ion-icon [ngClass]="status.thirdCircle === 1 ? 'green' : 'gray'" name="person-circle"></ion-icon>
-          <ion-icon [ngClass]="status.thirdCircle === 2 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="count >= 6 ? 'green' : 'gray'" name="person-circle"></ion-icon>
+          <ion-icon [ngClass]="count >= 7 ? 'green' : 'gray'" name="person-circle"></ion-icon>
         </div>
       </div>
     }
@@ -68,5 +67,5 @@ import { InviteStatus } from '../store/contacts.store';
   `,
 })
 export class InviteStatusComponent {
-  inviteStatus = input<InviteStatus | undefined>(undefined);
+  referralCount = input<number | undefined>(undefined);
 }

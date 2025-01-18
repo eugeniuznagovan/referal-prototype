@@ -107,7 +107,7 @@ import { AppStore } from '../store/app.store';
               <h3>{{ contact.name }}</h3>
               <p>{{ contact.username }}</p>
             </ion-label>
-            <app-invite-status [inviteStatus]="contact.inviteStatus" style="margin-right: 1rem"/>
+            <app-invite-status [referralCount]="contact.referralCount" style="margin-right: 1rem"/>
             <ion-checkbox #checkbox slot="end"/>
           </ion-item>
         } @empty {
