@@ -22,7 +22,6 @@ import {
 import { InviteStatusComponent, } from '../ui/invite-status.component';
 import { ContactsStore } from '../store/contacts.store';
 import { AppStore } from '../store/app.store';
-import { Clipboard } from '@angular/cdk/clipboard';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -137,7 +136,6 @@ import { environment } from '../../environments/environment';
 export class ContactsComponent {
   contactsStore = inject(ContactsStore);
   appStore = inject(AppStore);
-  clipboard = inject(Clipboard);
 
   searchQuery = model('');
 
@@ -153,6 +151,11 @@ export class ContactsComponent {
 
   copyUserId() {
     const inviteLink = `${environment.botUrl}?start=${this.appStore.user().id}`;
-    this.clipboard.copy(inviteLink);
+
+    navigator.clipboard.writeText(inviteLink).then(() => {
+      console.log('Text copied to clipboard!');
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
   }
 }
