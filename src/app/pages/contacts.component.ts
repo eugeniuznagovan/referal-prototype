@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import {
   IonAvatar,
   IonBackButton,
+  IonButton,
   IonButtons,
   IonCheckbox,
   IonContent,
@@ -15,11 +16,14 @@ import {
   IonSegment,
   IonSegmentButton,
   IonTitle,
+  IonToast,
   IonToolbar
 } from '@ionic/angular/standalone';
 import { InviteStatusComponent, } from '../ui/invite-status.component';
 import { ContactsStore } from '../store/contacts.store';
 import { AppStore } from '../store/app.store';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-contacts',
@@ -44,6 +48,8 @@ import { AppStore } from '../store/app.store';
     IonCheckbox,
     FormsModule,
     InviteStatusComponent,
+    IonButton,
+    IonToast,
 
   ],
   template: `
@@ -113,6 +119,8 @@ import { AppStore } from '../store/app.store';
         } @empty {
           <ion-item>
             <ion-label>No results found.</ion-label>
+            <ion-button (click)="copyUserId()" id="open-toast" slot="end">Invite</ion-button>
+            <ion-toast trigger="open-toast" message="Link copied 🔗" [duration]="3000"></ion-toast>
           </ion-item>
         }
       </ion-list>
@@ -127,18 +135,24 @@ import { AppStore } from '../store/app.store';
   `,
 })
 export class ContactsComponent {
-  readonly store = inject(ContactsStore);
-  readonly appStore = inject(AppStore);
+  contactsStore = inject(ContactsStore);
+  appStore = inject(AppStore);
+  clipboard = inject(Clipboard);
 
   searchQuery = model('');
 
   filteredContacts = computed(() => {
     const query = this.searchQuery().toLowerCase();
 
-    return this.store.contacts().filter(contact => {
+    return this.contactsStore.contacts().filter(contact => {
       return contact.name.toLowerCase().includes(query) ||
         contact.username.toLowerCase().includes(query) ||
         contact.email.toLowerCase().includes(query)
     });
   })
+
+  copyUserId() {
+    const inviteLink = `${environment.botUrl}?start=${this.appStore.user().id}`;
+    this.clipboard.copy(inviteLink);
+  }
 }
