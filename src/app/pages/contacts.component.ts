@@ -63,15 +63,15 @@ import { environment } from '../../environments/environment';
         <ion-list>
           <ion-item>
             <ion-label>Your Contacts are your resources</ion-label>
-            <ion-label slot="end">9</ion-label>
+            <ion-label slot="end">0</ion-label>
           </ion-item>
           <ion-item>
             <ion-label>Your Contacts are your resources</ion-label>
-            <ion-label slot="end">5</ion-label>
+            <ion-label slot="end">0</ion-label>
           </ion-item>
           <ion-item>
             <ion-label>Already Recommended</ion-label>
-            <ion-label slot="end">2</ion-label>
+            <ion-label slot="end">0</ion-label>
           </ion-item>
         </ion-list>
       </ion-toolbar>
