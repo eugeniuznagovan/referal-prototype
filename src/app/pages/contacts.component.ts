@@ -16,8 +16,8 @@ import {
   IonSegment,
   IonSegmentButton,
   IonTitle,
-  IonToast,
-  IonToolbar
+  IonToolbar,
+  ToastController
 } from '@ionic/angular/standalone';
 import { InviteStatusComponent, } from '../ui/invite-status.component';
 import { ContactsStore } from '../store/contacts.store';
@@ -48,7 +48,7 @@ import { environment } from '../../environments/environment';
     FormsModule,
     InviteStatusComponent,
     IonButton,
-    IonToast,
+
 
   ],
   template: `
@@ -118,8 +118,7 @@ import { environment } from '../../environments/environment';
         } @empty {
           <ion-item>
             <ion-label>No results found.</ion-label>
-            <ion-button (click)="copyUserId()" id="open-toast" slot="end">Invite</ion-button>
-            <ion-toast trigger="open-toast" message="Link copied 🔗" [duration]="3000"></ion-toast>
+            <ion-button (click)="copyUserId()" slot="end">Invite</ion-button>
           </ion-item>
         }
       </ion-list>
@@ -136,6 +135,7 @@ import { environment } from '../../environments/environment';
 export class ContactsComponent {
   contactsStore = inject(ContactsStore);
   appStore = inject(AppStore);
+  toastCtrl = inject(ToastController);
 
   searchQuery = model('');
 
@@ -149,13 +149,21 @@ export class ContactsComponent {
     });
   })
 
-  copyUserId() {
+  async copyUserId() {
     const inviteLink = `${environment.botUrl}?start=${this.appStore.user().id}`;
 
-    navigator.clipboard.writeText(inviteLink).then(() => {
-      console.log('Text copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy text: ', err);
-    });
+    try {
+      await navigator.clipboard.writeText(inviteLink);
+
+      await (await this.toastCtrl.create({
+        message: 'Link copied 🔗',
+        duration: 3000,
+      })).present();
+    } catch (error) {
+      await (await this.toastCtrl.create({
+        message: 'Failed to copy the link 😰',
+        duration: 3000,
+      })).present();
+    }
   }
 }
