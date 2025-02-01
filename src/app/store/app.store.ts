@@ -16,7 +16,7 @@ export const AppStore = signalStore(
       return {
         theme: 'light',
         user: {
-          id: 123456789,
+          id: 551025685,
           is_bot: false,
           first_name: "John",
           last_name: "Doe",

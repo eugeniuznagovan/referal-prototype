@@ -1,4 +1,4 @@
-import { Component, computed, inject, model } from '@angular/core';
+import { Component, computed, inject, model, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonAvatar,
@@ -19,7 +19,6 @@ import {
   IonToolbar,
   ToastController
 } from '@ionic/angular/standalone';
-import { InviteStatusComponent, } from '../ui/invite-status.component';
 import { ContactsStore } from '../store/contacts.store';
 import { AppStore } from '../store/app.store';
 import { environment } from '../../environments/environment';
@@ -43,11 +42,10 @@ import { environment } from '../../environments/environment';
     IonList,
     IonListHeader,
     IonItem,
-    IonAvatar,
     IonCheckbox,
     FormsModule,
-    InviteStatusComponent,
     IonButton,
+    IonAvatar,
 
 
   ],
@@ -61,10 +59,6 @@ import { environment } from '../../environments/environment';
       </ion-toolbar>
       <ion-toolbar>
         <ion-list>
-          <ion-item>
-            <ion-label>Your Contacts are your resources</ion-label>
-            <ion-label slot="end">0</ion-label>
-          </ion-item>
           <ion-item>
             <ion-label>Your Contacts are your resources</ion-label>
             <ion-label slot="end">0</ion-label>
@@ -98,7 +92,7 @@ import { environment } from '../../environments/environment';
           <ion-label>Friends list</ion-label>
         </ion-list-header>
 
-        @for (contact of filteredContacts(); track contact.username) {
+        @for (contact of filteredContacts(); track contact.id) {
           <ion-item
             #item
             detail="false"
@@ -106,13 +100,16 @@ import { environment } from '../../environments/environment';
             (click)="checkbox.checked = !checkbox.checked"
           >
             <ion-avatar>
-              <img [src]="contact.avatar" alt="User Avatar"/>
+              <img [src]="contact.photo_url" alt="User Avatar"/>
             </ion-avatar>
             <ion-label style="margin-left: 1rem; text-overflow: elipsis; overflow: hidden; white-space: nowrap;">
-              <h3>{{ contact.name }}</h3>
-              <p>{{ contact.username }}</p>
+              <h3>{{ contact.first_name }}</h3>
+
+              @if (contact.username) {
+                <p>&#64;{{ contact.username }}</p>
+              }
             </ion-label>
-            <app-invite-status [referralCount]="contact.referralCount" style="margin-right: 1rem"/>
+            <!--            <app-invite-status [referralCount]="contact.referralCount" style="margin-right: 1rem"/>-->
             <ion-checkbox #checkbox slot="end"/>
           </ion-item>
         } @empty {
@@ -132,20 +129,22 @@ import { environment } from '../../environments/environment';
     }
   `,
 })
-export class ContactsComponent {
+export class ContactsComponent implements OnInit {
   contactsStore = inject(ContactsStore);
   appStore = inject(AppStore);
   toastCtrl = inject(ToastController);
 
   searchQuery = model('');
 
+  async ngOnInit() {
+    await this.contactsStore.getContacts(this.appStore.user().id);
+  }
+
   filteredContacts = computed(() => {
     const query = this.searchQuery().toLowerCase();
 
     return this.contactsStore.contacts().filter(contact => {
-      return contact.name.toLowerCase().includes(query) ||
-        contact.username.toLowerCase().includes(query) ||
-        contact.email.toLowerCase().includes(query)
+      return contact.first_name.toLowerCase().includes(query);
     });
   })
 
